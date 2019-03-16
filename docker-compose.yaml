@@ -1,0 +1,14 @@
+version: "3"
+
+services:
+  go:
+    container_name: go-test-http
+    image: golang
+    working_dir: /usr/opt/app
+    tty: true
+    volumes:
+      - ./:/usr/opt/app
+    ports:
+      - "4000:4000"
+    expose:
+      - "4000"

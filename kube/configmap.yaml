@@ -1,0 +1,9 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: go-config
+  namespace: default
+data:
+  DB_HOST: "127.0.0.1"
+  DB_PORT: "3306"
+  DB_USER: "user"

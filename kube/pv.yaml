@@ -1,0 +1,29 @@
+kind: PersistentVolume
+apiVersion: v1
+metadata:
+  name: go-test-pv
+  labels:
+    name: go-volume
+spec:
+  storageClassName: manual
+  capacity:
+    storage: 1Gi
+  accessModes:
+    - ReadWriteOnce
+  hostPath:
+    path: "/var/log/gologs"
+---
+kind: PersistentVolumeClaim
+apiVersion: v1
+metadata:
+  name: go-test-pvc
+spec:
+  storageClassName: manual
+  selector:
+    matchLabels:
+      name: go-volume
+  accessModes:
+    - ReadWriteOnce
+  resources:
+    requests:
+      storage: 1Gi

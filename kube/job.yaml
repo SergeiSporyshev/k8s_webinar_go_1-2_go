@@ -1,0 +1,24 @@
+apiVersion: batch/v1
+kind: Job
+metadata:
+  name: kube-go-job-v2
+spec:
+  template:
+    spec:
+      volumes:
+      - name: logs-storage
+        persistentVolumeClaim:
+          claimName: go-test-pvc
+      containers:
+        - name: kube-go-job
+          image: ssporyshev/wb_go_job:v1
+          command: ["go",  "run", "main.go"]
+          volumeMounts:
+          - mountPath: "/usr/src/app/logs"
+            name: logs-storage
+      restartPolicy: Never
+  backoffLimit: 4
+
+
+
+
